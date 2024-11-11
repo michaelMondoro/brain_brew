@@ -21,7 +21,7 @@
         </div>
         <div class="modal-action">
           <p class="btn btn-ghost">Research Provided by </p>
-          <a class="btn" href="https://info.arxiv.org" target="_blank">arXiv</a>
+          <a class="btn" href="https://info.arxiv.org" target="_blank">arXiv.org</a>
         </div>
         
       </div>
