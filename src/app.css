@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.main-container {
+    width: 100%;
+    padding: 1em 5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.horizontal-container {
+    width: 100%;
+    padding: 1em 0em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+* {
+    outline: none!important;
+}
