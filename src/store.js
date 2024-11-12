@@ -2,7 +2,7 @@ import { writable } from "svelte/store";
 import PocketBase from 'pocketbase';
 import {config} from './config.js';
 
-export const pb = await new PocketBase(`http://${config.DB_SERVER}:${config.DB_PORT}`);
+export const pb = await new PocketBase(`https://${config.DB_SERVER}:${config.DB_PORT}`);
 
 export let selectedPost = writable(null);
 export let posts = writable(null);
