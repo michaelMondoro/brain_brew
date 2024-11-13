@@ -9,7 +9,7 @@
     async function getTag(e) {
       loading.set(true);
       const category = e.target.parentNode.dataset.tip;
-      const records = await pb.collection('posts').getList(1,50,{filter: `categories ~ '${category}'`})
+      const records = await pb.collection('posts').getList(1,50,{sort: '-updated',filter: `categories ~ '${category}'`})
       selectedTag.set(category);
       posts.set(records.items);
       loading.set(false);
