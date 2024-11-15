@@ -26,7 +26,7 @@
             {#each Object.keys(categories) as category}
             <div class="stat">
                 <div class="stat-title">{category}</div>
-                <div class="stat-value text-sm">{categories[category]}</div>
+                <div class="stat-value text-sm">{categories[category].toLocaleString()}</div>
                 <div class="stat-desc"></div>
             </div>    
             {/each}
