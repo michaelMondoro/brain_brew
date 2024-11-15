@@ -7,7 +7,7 @@
   import PostOptions from "./post/PostOptions.svelte";
   import Post from "./post/Post.svelte";
   import ErrorMsg from "./utils/ErrorMsg.svelte";
-    import { onMount } from "svelte";
+  import { onMount } from "svelte";
 
   let modal;
   let page = 1;
@@ -30,7 +30,6 @@
     {#if $loading}
       <div class="main-container">
         <p class="py-4 btn btn-wide"><span class="loading loading-spinner loading-xs text-warning"></span> loading . . .</p>
-        
       </div>
     {:else} 
       <div class="grid grid-cols-3 gap-4 2xl:grid-cols-4" in:fade={{ duration: 1000 }}>

@@ -1,6 +1,7 @@
 <script>
     import Menu from "./Menu.svelte";
     import { loading, pb, posts, searchErr, selectedTag } from "../store";
+    import Stats from "./Stats.svelte";
 
     let input; 
     let menu;
@@ -52,7 +53,7 @@
             <input type="submit" hidden>
         </form>
     </div>
-    
+    <Stats />
     {#if $selectedTag !== ""}
     <div class="main-container px-5">
         <div class="badge badge-primary badge-lg bg-sky-400">
