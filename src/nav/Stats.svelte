@@ -5,7 +5,6 @@
     const CATEGORIES = ["stat","econ","q-bio", "q-fin","physics","math","cs"]
 
     onMount(async () => {
-        const records = await pb.collection('categories').getList(1,5,{sort:'-papers'});
         for (const category of CATEGORIES) {
             const records = await pb.collection('categories').getFullList({filter: `name ~ '${category}'`})
             const sum = records.map(obj => obj.papers).reduce((acc, curr) => acc + curr, 0);
@@ -20,11 +19,17 @@
     {#if !$loading && Object.keys(categories).length > 6}
     <div class="indicator">
         <div class="tooltip tooltip-left" style="z-index:10" data-tip="# papers published over the last week">
-            <span class="indicator-item badge badge-secondary">topics</span>
+            <span class="indicator-item badge badge-secondary">stats</span>
         </div>
         <div class="stats stats-vertical lg:stats-horizontal shadow">
-            {#each Object.keys(categories) as category}
             <div class="stat">
+                <div class="stat-title text-primary">topic</div>
+                <div class="stat-value text-sm"># papers
+                </div>
+                <div class="stat-desc"></div>
+            </div>   
+            {#each Object.keys(categories) as category}
+            <div class="stat min-w-28">
                 <div class="stat-title">{category}</div>
                 <div class="stat-value text-sm">{categories[category].toLocaleString()}</div>
                 <div class="stat-desc"></div>
