@@ -56,7 +56,7 @@
     <Stats />
     {#if $selectedTag !== ""}
     <div class="main-container px-5">
-        <div class="badge badge-primary badge-lg bg-sky-400">
+        <div class="badge badge-primary badge-lg bg-sky-400 border-none">
             <svg on:click={() => menu.reset()}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
