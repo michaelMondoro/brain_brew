@@ -23,7 +23,7 @@
       <p class="overflow-hidden">{post.content}</p>      
       <div class="grid grid-cols-3 w-full py-0 gap-2">
         {#each post.categories.slice(0,4) as category}
-        <div class="tooltip flex items-center" data-tip="{category.desc}">
+        <div class="tooltip" data-tip="{category.desc}">
           <span on:click={getTag} class="badge badge-accent cursor-pointer text-xs hover:bg-sky-400">#{category.name}</span>
         </div>
         {/each}
