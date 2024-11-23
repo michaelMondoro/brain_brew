@@ -17,25 +17,20 @@
 
 <main class="main-container">
     {#if !$loading && Object.keys(categories).length > 6}
-    <div class="indicator">
-        <div class="tooltip tooltip-left" style="z-index:10" data-tip="# papers published over the last week">
-            <span class="indicator-item badge badge-secondary">stats</span>
-        </div>
-        <div class="stats stats-vertical lg:stats-horizontal shadow">
-            <div class="stat">
-                <div class="stat-title text-primary">topic</div>
-                <div class="stat-value text-sm"># papers
-                </div>
-                <div class="stat-desc"></div>
-            </div>   
-            {#each Object.keys(categories) as category}
-            <div class="stat min-w-28">
-                <div class="stat-title">{category}</div>
-                <div class="stat-value text-sm">{categories[category].toLocaleString()}</div>
-                <div class="stat-desc"></div>
-            </div>    
-            {/each}
-        </div>
+    <div class="stats stats-vertical lg:stats-horizontal shadow">
+        <div class="stat">
+            <div class="stat-title text-primary">topic</div>
+            <div class="stat-value text-sm"># papers
+            </div>
+            <div class="stat-desc">published over the past 7 days</div>
+        </div>   
+        {#each Object.keys(categories) as category}
+        <div class="stat min-w-28">
+            <div class="stat-title">{category}</div>
+            <div class="stat-value text-sm">{categories[category].toLocaleString()}</div>
+            <div class="stat-desc"></div>
+        </div>    
+        {/each}
     </div>
     {/if}
 </main>
