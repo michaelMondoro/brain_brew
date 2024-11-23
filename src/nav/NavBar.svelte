@@ -1,6 +1,6 @@
 <script>
     import Menu from "./Menu.svelte";
-    import { loading, pb, posts, searchErr, selectedTag } from "../store";
+    import { fetchPosts, loading, pb, posts, searchErr, selectedTag } from "../store";
     import Stats from "./Stats.svelte";
 
     let input; 
@@ -8,16 +8,10 @@
 
     async function search(e) {
         e.preventDefault();
-        loading.set(true);
         selectedTag.set("");
         const query = input.value;
-        const results = await pb.collection('posts').getList(1, 50, {
-            filter: `content ~ '${query}' || paper_abstract ~ '${query}' || impact ~ '${query}' || purpose ~ '${query}'`,
-        });
-
-        results.items.length == 0 ? searchErr.set(true) : searchErr.set(false)
-        posts.set(results.items)
-        loading.set(false);
+        const filter = `content ~ '${query}' || paper_abstract ~ '${query}' || impact ~ '${query}' || purpose ~ '${query}'`;
+        fetchPosts(1, filter);
     }
 
     document.addEventListener('keydown', function(event) {

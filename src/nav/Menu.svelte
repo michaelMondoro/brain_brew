@@ -1,5 +1,5 @@
 <script>
-  import { posts, theme, pb, searchErr, selectedTag, loading, authenticated } from "../store";
+  import { theme, searchErr, selectedTag, fetchPosts, selectedCategory, page } from "../store";
   import AboutModal from "../utils/AboutModal.svelte";
   import Login from "../user/Login.svelte";
   import SignUp from "../user/Signup.svelte";
@@ -9,12 +9,10 @@
   let signupModal;
 
   export async function reset() {
-    loading.set(true);
     searchErr.set(false);
     selectedTag.set("");
-    const postItems = await pb.collection('posts').getList(1, 50, {sort: '-updated'});
-    posts.set(postItems.items)
-    loading.set(false)
+    selectedCategory.set("");
+    await fetchPosts($page);
   }
 
 </script>

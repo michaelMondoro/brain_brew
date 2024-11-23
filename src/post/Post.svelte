@@ -1,18 +1,16 @@
 <script>
     import PostOptions from "./PostOptions.svelte";
-    import { pb, posts, selectedTag, loading } from "../store";
+    import { selectedTag, fetchPosts, selectedCategory, page} from "../store";
     import { fade } from "svelte/transition";
 
     export let post;
     export let modal;
 
     async function getTag(e) {
-      loading.set(true);
       const category = e.target.parentNode.dataset.tip;
-      const records = await pb.collection('posts').getList(1,50,{sort: '-updated',filter: `categories ~ '${category}'`})
+      await fetchPosts(1, `categories ~ '${category}'`);
       selectedTag.set(category);
-      posts.set(records.items);
-      loading.set(false);
+      selectedCategory.set("");
     }
 </script>
 

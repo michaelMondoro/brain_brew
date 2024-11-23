@@ -1,17 +1,19 @@
 <script>
     import { onMount } from "svelte";
-    import { pb, loading } from "../store";
+    import { pb, loading, fetchPosts, selectedCategory, page } from "../store";
     let categories = {}
-    const CATEGORIES = ["stat","econ","q-bio", "q-fin","physics","math","cs"]
 
     onMount(async () => {
-        for (const category of CATEGORIES) {
-            const records = await pb.collection('categories').getFullList({filter: `name ~ '${category}'`})
-            const sum = records.map(obj => obj.papers).reduce((acc, curr) => acc + curr, 0);
-            categories[category] = sum;
+        const records = await pb.collection('mainCategories').getFullList();
+        for (const category of records) {
+            categories[category.name] = category.papers;
         }
     })
     
+    async function selectCategory(e, category) {
+        await fetchPosts(1, `categories ~ '${category}'`)
+        selectedCategory.set(category);
+    }
 
 </script>
 
@@ -26,7 +28,7 @@
         </div>   
         {#each Object.keys(categories) as category}
         <div class="stat min-w-28">
-            <div class="stat-title">{category}</div>
+            <div class="stat-title hover:cursor-pointer hover:text-primary {$selectedCategory === category ? 'text-primary' : ''}" on:click={(e)=>selectCategory(e, category)}>{category}</div>
             <div class="stat-value text-sm">{categories[category].toLocaleString()}</div>
             <div class="stat-desc"></div>
         </div>    
