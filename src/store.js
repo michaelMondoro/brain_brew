@@ -7,6 +7,7 @@ export const pb = await new PocketBase(`https://${config.DB_SERVER}:${config.DB_
 export let selectedPost = writable(null);
 export let selectedCategory = writable(null);
 export let page = writable(1);
+export let pageCount = writable(1);
 export let currentFilter = writable("");
 
 export let posts = writable(null);
@@ -32,6 +33,8 @@ export let fetchPosts = async (filter) => {
     loading.set(true);
     page.set(1);
     const postItems = await pb.collection('posts').getList(1, 50, {sort: '-updated', filter: filter ? filter : ""});
+    pageCount.set(postItems.totalPages);
+    console.log(postItems.totalPages)
     postItems.items.length == 0 ? searchErr.set(true) : searchErr.set(false);
 
     currentFilter.set(filter);

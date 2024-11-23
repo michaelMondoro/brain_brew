@@ -1,5 +1,5 @@
 <script>
-  import { pb, selectedPost, selectedTag, posts, searchErr, theme, loading, totalPosts, fetchPosts, page, currentFilter } from "./store";
+  import { pb, selectedPost, selectedTag, posts, searchErr, theme, loading, totalPosts, fetchPosts, page, currentFilter, pageCount } from "./store";
   import { fade } from "svelte/transition";
 
   import NavBar from "./nav/NavBar.svelte";
@@ -52,9 +52,11 @@
           {/each}
         </div>
         <br>
-        <button class="btn" on:click={loadMore}>load more 
-          {#if loadingMore}<span class="loading loading-spinner loading-md"></span>{/if}
-        </button>
+        {#if $page < $pageCount}
+          <button class="btn" on:click={loadMore}>load more 
+            {#if loadingMore}<span class="loading loading-spinner loading-md"></span>{/if}
+          </button>
+        {/if}
         {#if showJumpButton}
         <div class="fixed bottom-8 right-8 btn shadow-lg" on:click={()=>window.scrollTo(0,0)}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
