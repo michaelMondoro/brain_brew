@@ -1,6 +1,6 @@
 <script>
     import Menu from "./Menu.svelte";
-    import { fetchPosts, loading, pb, posts, searchErr, selectedTag } from "../store";
+    import { fetchPosts, loading, pb, posts, searchErr, selectedCategory, selectedTag } from "../store";
     import Stats from "./Stats.svelte";
 
     let input; 
@@ -9,6 +9,7 @@
     async function search(e) {
         e.preventDefault();
         selectedTag.set("");
+        selectedCategory.set("");
         const query = input.value;
         const filter = `content ~ '${query}' || paper_abstract ~ '${query}' || impact ~ '${query}' || purpose ~ '${query}'`;
         fetchPosts(filter);
