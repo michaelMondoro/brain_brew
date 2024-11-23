@@ -26,7 +26,7 @@
       <div class="badge badge-info badge-md">{formatDate()}</div>
       <div class="modal-action">
         <div class="badge badge-secondary badge-md">
-            <a href="{$selectedPost.paper_link}" target="_blank" class="link">referenced paper</a>
+            <a href="{$selectedPost.paper_link}" target="_blank" class="link">read the paper</a>
         </div>
       </div>
     </div>
