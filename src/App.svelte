@@ -11,6 +11,16 @@
 
   let modal;
   let loadingMore = false;
+  let showJumpButton = false;
+
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 500) {
+      showJumpButton = true;
+    } else {
+      showJumpButton = false;
+    }
+  })
+
   onMount(() => fetchPosts())
 
   async function loadMore() {
@@ -36,7 +46,7 @@
       </div>
       {:else} 
         <div class="btn btn-sm"><span class="badge badge-neutral">{$totalPosts ? $totalPosts.toLocaleString() : ''}</span> results</div>
-        <div class="grid grid-cols-3 gap-4 2xl:grid-cols-4" in:fade={{ duration: 1000 }}>
+        <div class="posts grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" in:fade={{ duration: 1000 }}>
           {#each $posts as post (post.id)}
             <Post post={post} modal={modal}/>
           {/each}
@@ -45,6 +55,13 @@
         <button class="btn" on:click={loadMore}>load more 
           {#if loadingMore}<span class="loading loading-spinner loading-md"></span>{/if}
         </button>
+        {#if showJumpButton}
+        <div class="fixed bottom-8 right-8 btn shadow-lg" on:click={()=>window.scrollTo(0,0)}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+          </svg>
+        </div>
+        {/if}
         <PostModal bind:this={modal}/>
       {/if} 
     {/if}
