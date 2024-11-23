@@ -1,5 +1,5 @@
 <script>
-  import { pb, selectedPost, selectedTag, posts, searchErr, theme, loading, totalPosts, fetchPosts, page } from "./store";
+  import { pb, selectedPost, selectedTag, posts, searchErr, theme, loading, totalPosts, fetchPosts, page, currentFilter } from "./store";
   import { fade } from "svelte/transition";
 
   import NavBar from "./nav/NavBar.svelte";
@@ -8,9 +8,21 @@
   import Post from "./post/Post.svelte";
   import ErrorMsg from "./utils/ErrorMsg.svelte";
   import { onMount } from "svelte";
+    import { load } from "cheerio";
 
   let modal;
-  onMount(() => fetchPosts(1))
+  let loadingMore = false;
+  onMount(() => fetchPosts())
+
+  async function loadMore() {
+    loadingMore = true;
+    page.set($page + 1);
+    console.log('loading')
+    const postItems = await pb.collection('posts').getList($page, 50, {sort: '-updated', filter: $currentFilter ? $currentFilter : ""});
+    
+    posts.set($posts.concat(postItems.items));
+    loadingMore = false;
+  }
 </script>
 
 <main data-theme={$theme} style="min-height: 100vh">
@@ -31,6 +43,9 @@
           {/each}
         </div>
         <br>
+        <button class="btn btn-neutral" on:click={loadMore}>load more 
+          {#if loadingMore}<span class="loading loading-spinner loading-md"></span>{/if}
+        </button>
         <PostModal bind:this={modal}/>
       {/if} 
     {/if}

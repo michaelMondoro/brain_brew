@@ -8,7 +8,7 @@
 
     async function getTag(e) {
       const category = e.target.parentNode.dataset.tip;
-      await fetchPosts(1, `categories ~ '${category}'`);
+      await fetchPosts(`categories ~ '${category}'`);
       selectedTag.set(category);
       selectedCategory.set("");
     }

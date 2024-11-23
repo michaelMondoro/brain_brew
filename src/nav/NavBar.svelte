@@ -11,7 +11,7 @@
         selectedTag.set("");
         const query = input.value;
         const filter = `content ~ '${query}' || paper_abstract ~ '${query}' || impact ~ '${query}' || purpose ~ '${query}'`;
-        fetchPosts(1, filter);
+        fetchPosts(filter);
     }
 
     document.addEventListener('keydown', function(event) {

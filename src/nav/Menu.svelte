@@ -1,5 +1,5 @@
 <script>
-  import { theme, searchErr, selectedTag, fetchPosts, selectedCategory, page } from "../store";
+  import { theme, searchErr, selectedTag, fetchPosts, selectedCategory } from "../store";
   import AboutModal from "../utils/AboutModal.svelte";
   import Login from "../user/Login.svelte";
   import SignUp from "../user/Signup.svelte";
@@ -12,7 +12,7 @@
     searchErr.set(false);
     selectedTag.set("");
     selectedCategory.set("");
-    await fetchPosts($page);
+    await fetchPosts();
   }
 
 </script>

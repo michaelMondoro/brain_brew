@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import { pb, loading, fetchPosts, selectedCategory, page } from "../store";
+    import { pb, loading, fetchPosts, selectedCategory, page, selectedTag } from "../store";
     let categories = {}
 
     onMount(async () => {
@@ -11,8 +11,9 @@
     })
     
     async function selectCategory(e, category) {
-        await fetchPosts(1, `categories ~ '${category}'`)
+        await fetchPosts(`categories ~ '${category}'`)
         selectedCategory.set(category);
+        selectedTag.set("");
     }
 
 </script>
