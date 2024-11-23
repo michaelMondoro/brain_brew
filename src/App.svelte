@@ -8,7 +8,6 @@
   import Post from "./post/Post.svelte";
   import ErrorMsg from "./utils/ErrorMsg.svelte";
   import { onMount } from "svelte";
-    import { load } from "cheerio";
 
   let modal;
   let loadingMore = false;
