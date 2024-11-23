@@ -42,7 +42,7 @@
           {/each}
         </div>
         <br>
-        <button class="btn btn-neutral" on:click={loadMore}>load more 
+        <button class="btn" on:click={loadMore}>load more 
           {#if loadingMore}<span class="loading loading-spinner loading-md"></span>{/if}
         </button>
         <PostModal bind:this={modal}/>
