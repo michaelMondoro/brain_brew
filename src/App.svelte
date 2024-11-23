@@ -11,11 +11,6 @@
 
   let modal;
   onMount(() => fetchPosts(1))
-
-  async function loadMore() {
-    page.set($page + 1);
-    await fetchPosts($page);
-  }
 </script>
 
 <main data-theme={$theme} style="min-height: 100vh">
@@ -36,7 +31,6 @@
           {/each}
         </div>
         <br>
-        <button class="btn btn-neutral" on:click={()=>loadMore()}>Load More</button>
         <PostModal bind:this={modal}/>
       {/if} 
     {/if}
