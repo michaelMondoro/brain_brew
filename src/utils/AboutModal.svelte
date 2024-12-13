@@ -8,7 +8,7 @@
   
   <main class="w-full">
     <dialog id="modal" class="modal" bind:this={dialog}>
-      <div class="modal-box max-w-3xl h-3xl">
+      <div class="modal-box max-w-3xl h-3xl" style="scrollbar-width:none;">
         <h2 class="text-xl font-bold text-center underline">About</h2>
         <p class="py-4 text-lg">The world is constantly evolving as technology continues to transform nearly every aspect of our society.
           It's important to stay up to date on the research advancements that change the way we live our lives. 
